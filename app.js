@@ -5,16 +5,18 @@ var MongoClient = require('mongodb').MongoClient;
 var T = new Twit(config);
 
 // Change these, depending on what you want your
-// database, collection, and tracking hash tag to
-// look like.
+// database, collection, and search term to
+// look like. If you want to specifically target
+// a hash tag, make sure you include the '#'
+// character (e.g. '#javascript').
 var dbName = 'myDatabaseName';
 var collectionName = 'myCollectionName';
-var hashTag = 'javascript';
+var searchTerm = 'javascript';
 // End change section
 
 var tweetDb, tweetColl;
 
-var stream = T.stream('statuses/filter', {track: hashTag});
+var stream = T.stream('statuses/filter', {track: searchTerm});
 stream.on('tweet', function(tweet) {
   console.log('Incoming Tweet');
 
